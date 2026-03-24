@@ -891,6 +891,33 @@
     		"implementation": "Use CrossEntropyLoss with label smoothing.",
     		"validation": "Macro-F1 > 0.9"
   	}
-	}
+		{
+    "series": "Linear Regression",
+    "level": 7,
+    "id": "bq_linreg_chicago_taxi_fare",
+    "algorithm": "Linear Regression (BigQuery Chicago Taxi Fare)",
+    "description": "Load sampled Chicago taxi trips from BigQuery, engineer features in SQL, and predict fare with a PyTorch linear regression model.",
+    "interface_protocol": "pytorch_task_v1",
+    "requirements": {
+      "data": "Use bigquery-public-data.chicago_taxi_trips.taxi_trips with SQL filtering and random sampling.",
+      "implementation": "Use google.cloud.bigquery to query data, preprocess categorical and numeric features, then train torch.nn.Linear with MSE loss.",
+      "validation": "Runs a full data -> model -> evaluation workflow with validation R2 and RMSE thresholds."
+    }
+  },
+  {
+    "series": "Logistic Regression",
+    "level": 7,
+    "id": "bq_logreg_census_income",
+    "algorithm": "Logistic Regression (BigQuery Census Income)",
+    "description": "Load census income data from BigQuery and classify whether income exceeds 50K using a PyTorch logistic regression model.",
+    "interface_protocol": "pytorch_task_v1",
+    "requirements": {
+      "data": "Use bigquery-public-data.ml_datasets.census_adult_income from BigQuery.",
+      "implementation": "Use google.cloud.bigquery to query the table, one-hot encode categorical features, and train a torch.nn.Linear model with BCEWithLogitsLoss.",
+      "validation": "Runs a full data -> model -> evaluation workflow with accuracy and F1 thresholds."
+    }
+  }
+
+	
     	]
 }
